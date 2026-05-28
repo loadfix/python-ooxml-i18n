@@ -1,0 +1,77 @@
+[build-system]
+requires = ["setuptools>=61.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "python-ooxml-i18n"
+authors = [{name = "loadfix contributors", email = "noreply@loadfix.dev"}]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Office/Business :: Office Suites",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Localization",
+    "Topic :: Text Processing :: Markup :: XML",
+]
+dependencies = [
+    "lxml>=4.9.1",
+    "typing-extensions>=4.9.0",
+]
+description = "Localisation toolkit for the loadfix python-ooxml family — extract / apply translations + .po round-trip across docx / pptx / xlsx / vsdx."
+dynamic = ["version"]
+keywords = ["ooxml", "i18n", "l10n", "translation", "gettext", "po", "docx", "pptx", "xlsx", "vsdx"]
+license = "Apache-2.0"
+readme = "README.md"
+requires-python = ">=3.9"
+
+[project.urls]
+Homepage = "https://github.com/loadfix/python-ooxml-i18n"
+Issues = "https://github.com/loadfix/python-ooxml-i18n/issues"
+Repository = "https://github.com/loadfix/python-ooxml-i18n.git"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.4.0",
+    "pytest-cov",
+    "pytest-xdist",
+    "ruff>=0.11.13",
+    "pyright>=1.1.401",
+]
+
+[tool.setuptools.dynamic]
+version = {attr = "ooxml_i18n.__version__"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+ooxml_i18n = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py *_test.py"
+python_classes = "Describe*"
+python_functions = "it_* its_* they_* and_* but_* test_*"
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "UP", "B"]
+
+[tool.pyright]
+include = ["src", "tests"]
+pythonVersion = "3.9"
+typeCheckingMode = "strict"
+reportUnnecessaryCast = true
+reportUnnecessaryTypeIgnoreComment = true
+reportImportCycles = false
